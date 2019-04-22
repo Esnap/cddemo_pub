@@ -42,7 +42,7 @@ build-docker-image:
   image: maven:3.3.9-jdk-8
   stage: test
   script:
-    - 'mvn $MAVEN_CLI_OPTS package dockerfile:build -f pom.xml'
+    - 'mvn $MAVEN_CLI_OPTS compile dockerfile:build -f pom.xml'
   artifacts:
     paths:
       - public
