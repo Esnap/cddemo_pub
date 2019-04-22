@@ -62,8 +62,34 @@ deploy-maven-package:
     stage: deploy
     script:
       - 'mvn deploy -s ci_settings.xml'
+    dependencies:
+      - deploy-docker-image
     artifacts:
       paths:
         - public
     only:
       - master
+
+deploy-docker-image:
+  image: maven:3.3.9-jdk-8
+  stage: deploy
+  script:
+    - 'mvn dockerfile:push -f pom.xml'
+  dependencies:
+    - build-docker-image
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+build-docker-image:
+  image: maven:3.3.9-jdk-8
+  stage: test
+  script:
+    - 'mvn dockerfile:build -f pom.xml'
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
