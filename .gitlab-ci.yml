@@ -38,11 +38,22 @@ cache:
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
 
+maven-package:
+  image: maven:3.3.9-jdk-8
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS package'
+  artifacts:
+    paths:
+      - public
+
 build-docker-image:
   image: maven:3.3.9-jdk-8
   stage: test
   script:
-    - 'mvn dockerfile:build -f pom.xml'
+    - 'mvn $MAVEN_CLI_OPTS dockerfile:build -f pom.xml'
+  dependencies:
+    - maven-package
   artifacts:
     paths:
       - public
@@ -53,7 +64,7 @@ deploy-docker-image:
   image: maven:3.3.9-jdk-8
   stage: deploy
   script:
-    - 'mvn dockerfile:push -f pom.xml'
+    - 'mvn $MAVEN_CLI_OPTS dockerfile:push -f pom.xml'
   dependencies:
     - build-docker-image
   artifacts:
