@@ -16,7 +16,7 @@
 # * Publishes the documentation for `master` branch.
 
 stages:
-- build
+- verify-project
 - test
 - build_image
 - deploy
@@ -40,7 +40,7 @@ cache:
 # Because some enforcer rules might check dependency convergence and class duplications
 # we use `test-compile` here instead of `validate`, so the correct classpath is picked up.
 .validate:
-  stage: build
+  stage: verify-project
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
   artifacts:
