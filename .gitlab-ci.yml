@@ -43,8 +43,8 @@ cache:
   stage: build
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
-    artifacts:
-      - 'cddemo_pub-0.0.1-SNAPSHOT.jar'
+  artifacts:
+    - 'cddemo_pub-0.0.1-SNAPSHOT.jar'
 
 build-docker-image:
   image: docker:latest
