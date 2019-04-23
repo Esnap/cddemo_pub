@@ -39,7 +39,7 @@ cache:
 # This will only validate and compile stuff and run e.g. maven-enforcer-plugin.
 # Because some enforcer rules might check dependency convergence and class duplications
 # we use `test-compile` here instead of `validate`, so the correct classpath is picked up.
-.validate:
+validate:
   stage: build
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
@@ -58,7 +58,7 @@ build-docker-image:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub .
-    - docker push registry.gitlab.com/esnap/cddemo_pub
+  #  - docker push registry.gitlab.com/esnap/cddemo_pub
   only:
     - master
 
