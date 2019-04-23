@@ -15,6 +15,12 @@
 # * Uses site:stage to collect the documentation for multi-module projects.
 # * Publishes the documentation for `master` branch.
 
+stages:
+- build
+- test
+- build_image
+- deploy
+
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
   # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
@@ -33,19 +39,26 @@ cache:
 # This will only validate and compile stuff and run e.g. maven-enforcer-plugin.
 # Because some enforcer rules might check dependency convergence and class duplications
 # we use `test-compile` here instead of `validate`, so the correct classpath is picked up.
-.validate: &validate
+.validate:
   stage: build
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
+    artifacts:
+      - 'cddemo_pub-0.0.1-SNAPSHOT.jar'
 
 build-docker-image:
-  image: maven:3.3.9-jdk-8
-  stage: test
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: build_image
+  # Remember that even though the JAR file was built in a separate image
+  #  Gitlab CI will make it available in this image because I specified it in artifacts
+  #
+  # All I really need to build the Docker image is the artifact(s) & Dockerfile
   script:
-    - 'mvn $MAVEN_CLI_OPTS compile dockerfile:build -f pom.xml'
-  artifacts:
-    paths:
-      - public
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub .
+    - docker push registry.gitlab.com/esnap/cddemo_pub
   only:
     - master
 
