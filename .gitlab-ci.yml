@@ -48,7 +48,7 @@ verify-project:
     paths:
     - 'target/cddemo-0.0.1-SNAPSHOT.jar'
 
-build-docker-image:
+build_deploy-docker-image:
   image: docker:latest
   services:
     - docker:dind
@@ -63,19 +63,6 @@ build-docker-image:
     - docker push registry.gitlab.com/esnap/cddemo_pub
   dependencies:
     - verify-project
-  only:
-    - master
-
-deploy-docker-image:
-  image: maven:3.3.9-jdk-8
-  stage: deploy
-  script:
-    - 'mvn $MAVEN_CLI_OPTS dockerfile:push -f pom.xml'
-  dependencies:
-    - build-docker-image
-  artifacts:
-    paths:
-      - public
   only:
     - master
 
