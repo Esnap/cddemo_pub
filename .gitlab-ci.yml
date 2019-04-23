@@ -39,12 +39,13 @@ cache:
 # This will only validate and compile stuff and run e.g. maven-enforcer-plugin.
 # Because some enforcer rules might check dependency convergence and class duplications
 # we use `test-compile` here instead of `validate`, so the correct classpath is picked up.
-.validate:
-  stage: verify-project
+verify-project:
   image: maven:3.3.9-jdk-8
+  stage: verify-project
   script:
     - 'mvn $MAVEN_CLI_OPTS test-compile'
   artifacts:
+    paths:
     - 'cddemo_pub-0.0.1-SNAPSHOT.jar'
 
 build-docker-image:
