@@ -3,7 +3,7 @@ FROM openjdk:8-jre-alpine
 ENV JAVA_TOOL_OPTIONS=""
 ENV SERVER_PORT=8080
 
-COPY cddemo_pub.jar /cddemo_pub.jar
+ADD cddemo-0.0.1-SNAPSHOT.jar /cddemo-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080
 
