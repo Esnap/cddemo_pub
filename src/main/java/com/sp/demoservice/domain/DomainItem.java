@@ -1,10 +1,17 @@
 package com.sp.demoservice.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NonNull;
+
+import javax.persistence.Entity;
 
 @Getter
 @AllArgsConstructor
-@Builder
+@Data
+@Entity
+
 public class DomainItem {
 
     @NonNull
