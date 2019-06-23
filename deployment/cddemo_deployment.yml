@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cddemopod
+  labels:
+    app: cddemo_app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cddemo
+  template:
+    metadata:
+      labels:
+        app: cddemo    
+    spec:
+      containers:
+      - name: cddemo
+        image: registry.gitlab.com/esnap/cddemo_pub
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080     
+        securityContext:
+          privileged: false
+    
