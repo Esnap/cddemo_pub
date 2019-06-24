@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Builder
-
 @Table(name="DomainItem")
 public class DomainItem {
 
