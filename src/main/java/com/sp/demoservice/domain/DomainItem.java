@@ -1,9 +1,6 @@
 package com.sp.demoservice.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +11,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 
 @Table(name="DomainItem")
 public class DomainItem {
