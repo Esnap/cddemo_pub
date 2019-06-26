@@ -4,6 +4,7 @@ metadata:
   name: cddemopod
   labels:
     app: cddemo_app
+    version: v1
 spec:
   replicas: 1
   selector:
@@ -12,11 +13,12 @@ spec:
   template:
     metadata:
       labels:
-        app: cddemo    
+        app: cddemo
+        version: v1
     spec:
       containers:
       - name: cddemo
-        image: registry.gitlab.com/esnap/cddemo_pub
+        image: registry.gitlab.com/esnap/cddemo_pub-v1
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080     
