@@ -46,7 +46,7 @@ verify-project:
     - 'mvn $MAVEN_CLI_OPTS package'
   artifacts:
     paths:
-    - 'target/cddemo-0.0.1-SNAPSHOT.jar'
+    - 'target/cddemo-1.0.jar'
 
 build_deploy-docker-image:
   image: docker:latest
