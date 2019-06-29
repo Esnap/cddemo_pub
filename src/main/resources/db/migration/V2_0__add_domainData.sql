@@ -1,0 +1,1 @@
+ALTER TABLE domain_item add column domainData varchar (255);
