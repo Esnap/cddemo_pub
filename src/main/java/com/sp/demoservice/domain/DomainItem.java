@@ -8,13 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Builder
 @Table(name="DomainItem")
 public class DomainItem {
 
     private static final long serialVersionUID = -3009157732242241606L;
+
+    public DomainItem (String id, String information){
+        this.id = id;
+        this.information = information;
+        this.domainData = information;
+    }
+
+    public DomainItem (String id, String information, String domainData){
+        this.id = id;
+        this.information = information;
+        this.domainData = domainData;
+    }
 
     @NonNull
     @Id
