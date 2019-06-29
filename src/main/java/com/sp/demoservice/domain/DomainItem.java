@@ -1,7 +1,6 @@
 package com.sp.demoservice.domain;
 
 import lombok.*;
-import lombok.extern.log4j.Log4j2;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Log4j2
 @Builder
 @Table(name="DomainItem")
 public class DomainItem {
