@@ -1,0 +1,1 @@
+MODIFY domain_item add column domainData varchar (255);
