@@ -25,7 +25,7 @@ public class DomainItemService {
     @PostMapping(path = "items/add/{id}/{content}")
     public void add(@PathVariable String id, @PathVariable String content) {
         long domainItemId = getLong(id);
-        domainRepository.save(DomainItem.builder().id(id).information(content).build());
+        domainRepository.save(new DomainItem(id,content));
         System.out.println(String.format("added element: id: %s, content: %s", id, content));
     }
 
