@@ -18,7 +18,7 @@ public class DomainItemService {
 
     @GetMapping(path = "items/findall", produces = JSON_UTF_8)
     public Iterable<DomainItem> findAll() {
-        return domainRepository.findAll();
+        return domainRepository.findByIdNotNull();
 
     }
 
