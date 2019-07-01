@@ -6,12 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @Entity
 @Builder
 @Table(name="DomainItem")
-public class DomainItem {
+public class DomainItem implements Serializable {
 
     private static final long serialVersionUID = -3009157732242241606L;
 
