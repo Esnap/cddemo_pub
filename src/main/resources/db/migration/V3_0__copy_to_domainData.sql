@@ -1,0 +1,1 @@
+update domain_item set domain_data = information where domain_item.domain_data is null;

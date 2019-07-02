@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Getter
 @NoArgsConstructor
 @Entity
 @Builder
@@ -47,6 +46,14 @@ public class DomainItem  {
     public void setDomainData(String data){
         domainData = data;
         information = data;
+    }
+
+    public String getInformation(){
+        return domainData;
+    }
+
+    public String getDomainData(){
+        return domainData;
     }
 
 }
