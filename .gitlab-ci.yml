@@ -46,7 +46,7 @@ verify-project:
     - 'mvn $MAVEN_CLI_OPTS package'
   artifacts:
     paths:
-    - 'target/cddemo-3.0-SNAPSHOT.jar'
+    - 'target/cddemo-3.0.jar'
 
 build_deploy-docker-image:
   image: docker:latest
@@ -59,7 +59,7 @@ build_deploy-docker-image:
   # All I really need to build the Docker image is the artifact(s) & Dockerfile
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub:3.0-SNAPSHOT .
+    - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub:3.0 .
     - docker push registry.gitlab.com/esnap/cddemo_pub
   dependencies:
     - verify-project
