@@ -56,4 +56,8 @@ public class DomainItem  {
         return domainData;
     }
 
+    public String getId(){
+        return id;
+    }
+
 }

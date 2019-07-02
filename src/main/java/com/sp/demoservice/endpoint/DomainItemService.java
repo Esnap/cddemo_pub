@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RestController
 public class DomainItemService {
     public static final String JSON_UTF_8 = MediaType.APPLICATION_JSON_UTF8_VALUE;
@@ -19,7 +22,16 @@ public class DomainItemService {
     @GetMapping(path = "items/findall", produces = JSON_UTF_8)
     public Iterable<DomainItem> findAll() {
         return domainRepository.findByIdNotNull();
+    }
 
+    @GetMapping(path = "items/addMany", produces = JSON_UTF_8)
+    public String addMany(){
+        Set<DomainItem> items = new HashSet<>();
+        for (int i = 0; i < 10000; i++) {
+            items.add(new DomainItem(i+"","info number "+i));
+        }
+        domainRepository.save(items);
+        return "created 10000 elements";
     }
 
     @PostMapping(path = "items/add/{id}/{content}")
