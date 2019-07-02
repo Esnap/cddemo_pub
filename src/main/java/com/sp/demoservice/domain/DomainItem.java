@@ -16,40 +16,19 @@ import javax.persistence.Table;
 @Table(name="DomainItem")
 public class DomainItem  {
 
-    public DomainItem (String id, String information){
+    public DomainItem (String id, String domainData){
         this.id = id;
-        this.information = information;
-        this.domainData = information;
-    }
-
-    public DomainItem (String id, String information, String domainData){
-        this.id = id;
-        this.information = information;
         this.domainData = domainData;
     }
-
     @NonNull
     @Id
     private String id;
 
-    @Column(name="information")
-    private String information;
-
     @Column(name="domainData")
     private String domainData;
 
-    public void setInformation(String info){
-        information = info;
-        domainData = info;
-    }
-
     public void setDomainData(String data){
         domainData = data;
-        information = data;
-    }
-
-    public String getInformation(){
-        return domainData;
     }
 
     public String getDomainData(){
