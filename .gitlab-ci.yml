@@ -59,7 +59,7 @@ build_deploy-docker-image:
   # All I really need to build the Docker image is the artifact(s) & Dockerfile
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub:2.0.
+    - docker build --no-cache=true -t registry.gitlab.com/esnap/cddemo_pub:2.0
     - docker push registry.gitlab.com/esnap/cddemo_pub
   dependencies:
     - verify-project
