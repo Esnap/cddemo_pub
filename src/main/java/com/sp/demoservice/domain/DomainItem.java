@@ -1,20 +1,21 @@
 package com.sp.demoservice.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
+@Getter
 @NoArgsConstructor
 @Entity
 @Builder
 @Table(name="DomainItem")
-public class DomainItem implements Serializable {
-
-    private static final long serialVersionUID = -3009157732242241606L;
+public class DomainItem  {
 
     public DomainItem (String id, String information){
         this.id = id;
@@ -47,4 +48,5 @@ public class DomainItem implements Serializable {
         domainData = data;
         information = data;
     }
+
 }
